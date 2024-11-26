@@ -34,6 +34,18 @@
 
 		pre {
 			text-wrap-mode: wrap;
+
+			span {
+				&.placeholder {
+					color: #a9a9a9;
+					font-style: italic;
+				}
+
+				&.value {
+					color: #007acc;
+					font-weight: 700;
+				}
+			}
 		}
 	}
 }
