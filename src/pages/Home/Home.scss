@@ -1,0 +1,39 @@
+.App {
+	font-family: Arial, sans-serif;
+	margin: 20px auto;
+	max-width: 600px;
+
+	.form-group {
+		margin-bottom: 15px;
+	}
+
+	label {
+		display: block;
+		font-weight: bold;
+		margin-bottom: 5px;
+	}
+
+	input {
+		box-sizing: border-box;
+		padding: 8px;
+		width: 100%;
+	}
+
+	button {
+		cursor: pointer;
+		font-size: 16px;
+		padding: 10px 15px;
+	}
+
+	.output {
+		background-color: #f9f9f9;
+		border: 1px solid #ccc;
+		margin-top: 20px;
+		padding: 10px;
+		word-wrap: wrap;
+
+		pre {
+			text-wrap-mode: wrap;
+		}
+	}
+}

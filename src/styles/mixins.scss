@@ -1,0 +1,106 @@
+@use "sass:map";
+
+@use "./themes" as *;
+
+@mixin rounded-corners {
+	border-radius: 0.8rem;
+}
+
+@mixin drop-shadow {
+	filter: drop-shadow(0 0.7rem 0.7rem oklch(0% 0 0deg / 0.1));
+}
+
+@mixin text-shadow {
+	text-shadow: 0 0.2rem 0.8rem oklch(0% 0 0 / 0.1);
+}
+
+@mixin sr-only {
+	$properties: (
+		border: 0,
+		-webkit-clip-path: inset(50%),
+		clip: rect(0, 0, 0, 0),
+		clip-path: inset(50%),
+		height: 1px,
+		margin: -1px,
+		overflow: hidden,
+		padding: 0,
+		position: absolute,
+		white-space: nowrap,
+		width: 1px
+	);
+
+	@each $property, $value in $properties {
+		#{$property}: $value !important;
+	}
+}
+
+// Animated ellipses
+@mixin ellipsis-animation($duration: 1s) {
+	display: inline-block;
+	padding-right: 3ex;
+	position: relative;
+
+	&::after {
+		animation: ellipsis $duration steps(4, end) infinite;
+		content: "";
+		letter-spacing: 0.5ex;
+		padding-left: 0.5rem;
+		position: absolute;
+	}
+}
+
+@keyframes ellipsis {
+	0% {
+		content: "";
+	}
+
+	25% {
+		content: ".";
+	}
+
+	50% {
+		content: "..";
+	}
+
+	75% {
+		content: "...";
+	}
+}
+
+@mixin theme-colors($theme) {
+	$theme-map: if($theme == "light", $light-theme, $dark-theme);
+
+	@each $name, $value in $theme-map {
+		--#{$name}: #{$value};
+	}
+}
+
+// Media Queries / Responsive
+
+$breakpoints: (
+	"mobile": "576px",
+	"tablet": "768px",
+	"laptop": "1024px",
+	"desktop": "1200px",
+	"large-desktop": "1366px",
+	"2k": "1440px",
+	"4k": "2560px"
+);
+
+@mixin responsive-min($breakpoint) {
+	@media (min-width: map.get($breakpoints, $breakpoint)) {
+		@content;
+	}
+}
+
+@mixin responsive-max($breakpoint) {
+	@media (max-width: map.get($breakpoints, $breakpoint)) {
+		@content;
+	}
+}
+
+@mixin responsive-min-max($min, $max) {
+	@media (min-width: map.get($breakpoints, $min)) and (max-width: map.get($breakpoints, $max)) {
+		@content;
+	}
+}

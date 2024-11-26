@@ -1,0 +1,59 @@
+@use "./reset.scss";
+// @use "./themes.scss";
+
+// // Theme application
+// [data-theme="light"] {
+// 	@include theme-colors("light");
+// }
+
+// [data-theme="dark"] {
+// 	@include theme-colors("dark");
+// }
+
+html,
+body {
+	// font-size: 10px;
+	margin: 0;
+	min-height: 100dvh;
+	overflow-x: hidden;
+	padding: 0;
+	width: 100%;
+}
+
+#root {
+	display: grid;
+	min-height: 100dvh;
+	width: 100%;
+}
+
+// For content which should only be accessible by a screen reader
+.sr-only {
+	@include sr-only;
+}
+
+// For content which should only be accessible by a screen reader and keyboard navigation (if focusable)
+.sr-only-focusable:focus-visible {
+	clip: auto !important;
+	-webkit-clip-path: none !important;
+	clip-path: none !important;
+	height: auto !important;
+	margin: auto !important;
+	overflow: visible !important;
+	white-space: normal !important;
+	width: auto !important;
+}
+
+.ellipses {
+	@include ellipsis-animation;
+}
+
+.fi::before {
+	content: "";
+}
+
+// Media Queries for Accessibility
+@media (prefers-reduced-motion: reduce) {
+	* {
+		transition: none !important;
+	}
+}
